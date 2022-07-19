@@ -1,0 +1,93 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar class="nav">
+      <div class="logo-section">
+        <a href="/home">
+          <img src="../../../assets/image/perpus.png" alt="logo" />
+        </a>
+      </div>
+    </mat-toolbar>
+    <mat-nav-list>
+      <div class="nav-menu">
+        <mat-accordion multi>
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon style="margin-top: 10px; font-size: 20px"
+                  >grid_view</mat-icon
+                >
+                <p
+                  style="
+                    font-size: 16px;
+                    letter-spacing: 1px;
+                    margin-top: 11px;
+                    margin-left: 20px;
+                  "
+                >
+                  Features
+                </p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a
+              mat-list-item
+              id="pinjaman"
+              [routerLink]="[{ outlets: { content: ['datapinjaman'] } }]"
+              >Peminjaman Buku</a
+            >
+            <a
+              mat-list-item
+              [routerLink]="[{ outlets: { content: ['databuku'] } }]"
+              >Data Buku</a
+            >
+            <a
+              mat-list-item
+              [routerLink]="[{ outlets: { content: ['datauser'] } }]"
+              >Data Pegawai</a
+            >
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="header">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="dropdown">
+        <a
+          class="nav-link dropdown-toggle nav-link-lg nav-link-user"
+          data-bs-toggle="dropdown"
+        >
+          <img
+            src="../../../assets/image/user_male.png"
+            class="rounded-circle mr-1 profile_pp"
+            alt=""
+          />
+
+          <div class="d-sm-none d-lg-inline-block profile-text">Hi , Admin</div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a (click)="userSignOut()" class="dropdown-item has-icon">
+            <i class="fas fa-sign-out-alt" style="margin-right: 10px"></i>
+            Logout
+          </a>
+        </div>
+      </div>
+    </mat-toolbar>
+    <router-outlet name="content"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,73 @@
+<h3 mat-dialog-title>Tambah Data Buku</h3>
+<div mat-dialog-content class="input-control">
+  <div class="input-area">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label style="margin-bottom: 10px">Nomor Registrasi</mat-label>
+      <input
+        matInput
+        [(ngModel)]="noRegist"
+        placeholder="Nomor Registrasi Buku Tidak Dapat Diubah"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label style="margin-bottom: 10px">Judul Buku</mat-label>
+      <input matInput [(ngModel)]="judulBuku" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="npt">
+      <mat-label>Nama Penerbit</mat-label>
+      <input matInput [(ngModel)]="namaPenerbit" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 180px">
+      <mat-label>Tahun Terbit</mat-label>
+      <input matInput type="date" [(ngModel)]="tahunTerbit" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="jb">
+      <mat-label>Jenis Buku</mat-label>
+      <mat-select [(ngModel)]="jenisBuku">
+        <mat-option disabled>..</mat-option>
+        <mat-option value="1">Buku Pelajaran</mat-option>
+        <mat-option value="0">Buku Bacaan</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="jenisBuku == true"
+      appearance="fill"
+      style="width: 230px"
+    >
+      <mat-label>Buku Pelajaran Kelas</mat-label>
+      <mat-select [(ngModel)]="bukuKelas">
+        <mat-option disabled>..</mat-option>
+        <mat-option value="Kelas 10">Kelas 10</mat-option>
+        <mat-option value="Kelas 11">Kelas 11</mat-option>
+        <mat-option value="Kelas 12">Kelas 12</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="jmb">
+      <mat-label>Jumlah Buku</mat-label>
+      <input matInput type="number" min="0" [(ngModel)]="jumlahBuku" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end">
+  <button
+    class="btn btn-light"
+    style="margin-right: 10px"
+    id="cancelBtn"
+    mat-dialog-close
+  >
+    Cancel
+  </button>
+  <button
+    class="btn btn-success"
+    (click)="createDataBuku() "
+    [disabled]="!noRegist || !judulBuku || !jenisBuku || !namaPenerbit || !tahunTerbit || !jumlahBuku || clicked"
+  >
+    Add
+  </button>
+</div>

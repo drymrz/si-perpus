@@ -1,0 +1,54 @@
+<h3 mat-dialog-title>Tambah Data Pegawai</h3>
+<div mat-dialog-content class="input-control">
+  <div class="input-area">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label style="margin-bottom: 10px">ID User</mat-label>
+      <input
+        matInput
+        [(ngModel)]="userID"
+        placeholder="ID User Tidak Dapat Diubah"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label style="margin-bottom: 10px">Nama Lengkap</mat-label>
+      <input matInput [(ngModel)]="namaUser" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 200px">
+      <mat-label>Jenis Kelamin</mat-label>
+      <mat-select [(ngModel)]="jenisKelamin">
+        <mat-option disabled>..</mat-option>
+        <mat-option value="Laki-Laki">Laki-Laki</mat-option>
+        <mat-option value="Perempuan">Perempuan</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="tgp" style="width: 100px">
+      <mat-label>Usia</mat-label>
+      <input matInput [(ngModel)]="umurUser" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Alamat</mat-label>
+      <input matInput [(ngModel)]="alamatUser" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end">
+  <button
+    class="btn btn-light"
+    style="margin-right: 10px"
+    id="cancelBtn"
+    mat-dialog-close
+  >
+    Cancel
+  </button>
+  <button
+    class="btn btn-success"
+    (click)="postDataUser()"
+    [disabled]="!namaUser || !jenisKelamin || !umurUser || !alamatUser"
+  >
+    Add
+  </button>
+</div>

@@ -1,0 +1,40 @@
+<h3 mat-dialog-title>Edit Data Pegawai</h3>
+<div mat-dialog-content class="input-control">
+  <div class="input-area">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label style="margin-bottom: 10px">Nama Lengkap</mat-label>
+      <input matInput [(ngModel)]="namaUser" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 200px">
+      <mat-label>Jenis Kelamin</mat-label>
+      <mat-select [(ngModel)]="jenisKelamin">
+        <mat-option disabled>..</mat-option>
+        <mat-option value="Laki-Laki">Laki-Laki</mat-option>
+        <mat-option value="Perempuan">Perempuan</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100px; margin-left: 20px">
+      <mat-label>Usia</mat-label>
+      <input [(ngModel)]="umurUser" matInput value=" {{data.umurUser}}" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Alamat</mat-label>
+      <input matInput [(ngModel)]="alamatUser" value=" {{data.alamatUser}}" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end">
+  <button
+    class="btn btn-light"
+    style="margin-right: 10px"
+    id="cancelBtn"
+    mat-dialog-close
+    (click)="onCancel()"
+  >
+    Cancel
+  </button>
+  <button class="btn btn-warning" (click)="updateUser()">Update</button>
+</div>

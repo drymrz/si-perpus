@@ -1,0 +1,79 @@
+<webcam
+  [height]="500"
+  [width]="500"
+  [trigger]="triggerObservable"
+  (imageCapture)="handleImage($event)"
+></webcam>
+<!-- Button Takes Photo -->
+<button class="actionBtn" (click)="triggerSnapshot()">Take A Snapshot</button>
+<!-- Snapshot Div where image will be shown -->
+<div class="snapshot" *ngIf="webcamImage">
+  <h2>Take your image or get another</h2>
+  <!-- <img [src]="webcamImage.imageAsDataUrl" /> -->
+</div>
+
+<h3 mat-dialog-title>Tambah Data Peminjaman</h3>
+<div mat-dialog-content class="input-control">
+  <div class="input-area">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label style="margin-bottom: 10px">Nama Peminjam</mat-label>
+      <input matInput [(ngModel)]="namaUser" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nama Petugas</mat-label>
+      <mat-select [(ngModel)]="namaPetugas">
+        <mat-option disabled>..</mat-option>
+        <mat-option *ngFor="let petugas of dataPetugas" value="{{petugas.nama}}"
+          >{{petugas.nama}}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>ID Buku</mat-label>
+      <mat-select
+        (change)="getJudulBuku()"
+        (selectionChange)="getJudulBuku()"
+        [(ngModel)]="idBuku"
+      >
+        <mat-option disabled>..</mat-option>
+        <mat-option *ngFor="let buku of dataBuku" value="{{buku.id}}"
+          >{{buku.id}}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="judulBuku" appearance="fill" class="full-width">
+      <mat-label>Judul Buku</mat-label>
+      <input matInput type="text" readonly [(ngModel)]="judulBuku" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 200px">
+      <mat-label>Tanggal Peminjaman</mat-label>
+      <input matInput type="date" [(ngModel)]="tglPinjam" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="tgp" style="width: 200px">
+      <mat-label>Tanggal Pengembalian</mat-label>
+      <input matInput type="date" [(ngModel)]="tglBalik" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end">
+  <button
+    class="btn btn-light"
+    style="margin-right: 10px"
+    id="cancelBtn"
+    mat-dialog-close
+  >
+    Cancel
+  </button>
+  <button
+    class="btn btn-success"
+    (click)="postDataPinjam()"
+    [disabled]="!namaUser || !namaPetugas || !judulBuku || !tglPinjam || !tglBalik"
+  >
+    Add
+  </button>
+</div>

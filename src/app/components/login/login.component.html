@@ -1,0 +1,59 @@
+<img class="wave" src="../../../assets/image/wave.png" />
+<div class="container">
+  <div class="img">
+    <img src="../../../assets/image/bg.svg" />
+  </div>
+  <div class="login-content">
+    <div class="form">
+      <img src="../../../assets/image/avatar.svg" />
+      <h2 class="title">Welcome</h2>
+      <div class="input-div one">
+        <div class="i">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="div">
+          <input
+            type="text"
+            placeholder="Email"
+            class="input"
+            [(ngModel)]="userEmail"
+          />
+        </div>
+      </div>
+      <div class="input-div pass">
+        <div class="i">
+          <i class="fas fa-lock"></i>
+        </div>
+        <div class="div">
+          <input
+            type="password"
+            placeholder="Password"
+            class="input"
+            (ngModelChange)="clearWarn()"
+            [(ngModel)]="userPass"
+          />
+        </div>
+      </div>
+      <div
+        class="error-msg"
+        *ngIf="errorState"
+        style="
+          color: red;
+          margin-bottom: 10px;
+          font-size: 14.5px;
+          text-transform: uppercase;
+        "
+      >
+        <i class="fas fa-exclamation-triangle"> Username atau Password Salah</i>
+      </div>
+      <button
+        class="btn"
+        (click)="userLogIn()"
+        [disabled]="!userEmail || !userPass"
+      >
+        <div class="text" *ngIf="!showSpinner">Login</div>
+        <div class="loading-1 loading" *ngIf="showSpinner"></div>
+      </button>
+    </div>
+  </div>
+</div>
